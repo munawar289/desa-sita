@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desa Sita — Situs Resmi Pemerintah Desa</title>
+<meta name="description" content="Situs resmi Desa Sita, Kecamatan Rana Mese, Kabupaten Manggarai Timur, Nusa Tenggara Timur. Profil, potensi, pemerintahan, dan layanan desa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F5EFE2;
+    --bg-soft: #FBF7EC;
+    --ink: #2A2118;
+    --ink-soft: #5C4F3F;
+    --brown: #3D2A1D;
+    --brown-soft: #5A4330;
+    --green: #5B7A41;
+    --green-dark: #3F5A2C;
+    --terracotta: #C1602A;
+    --terracotta-dark: #9C4A1E;
+    --gold: #D9A441;
+    --border: #E2D8C3;
+    --card: #FFFFFF;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --radius: 14px;
+    --container: 1120px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, svg{ display: block; max-width: 100%; }
+  a{ color: inherit; }
+  ul{ margin: 0; padding: 0; list-style: none; }
+  h1,h2,h3{ font-family: var(--font-display); font-weight: 600; margin: 0; color: var(--brown); }
+  p{ margin: 0; }
+
+  .container{ max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+  .skip-link{
+    position: absolute; left: -999px; top: 0; background: var(--terracotta); color: #fff;
+    padding: 12px 20px; z-index: 100; border-radius: 0 0 8px 0; font-weight: 600;
+  }
+  .skip-link:focus{ left: 0; }
+
+  :focus-visible{ outline: 3px solid var(--terracotta); outline-offset: 2px; }
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(61,42,29,0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: box-shadow .2s ease;
+  }
+  .site-header.scrolled{ box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+  .header-inner{
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .brand{
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 600; font-size: 1.15rem;
+    color: #F5EFE2; text-decoration: none; letter-spacing: 0.01em;
+  }
+  .brand-mark{
+    width: 34px; height: 34px; border-radius: 9px;
+    background: linear-gradient(135deg, var(--gold), var(--terracotta));
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .brand-mark svg{ width: 18px; height: 18px; }
+  .brand small{
+    display: block; font-family: var(--font-body); font-weight: 500; font-size: 0.62rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #D9CDB8; margin-top: 1px;
+  }
+
+  .nav-list{ display: flex; gap: 2px; align-items: center; }
+  .nav-list a{
+    display: inline-block; padding: 10px 14px; border-radius: 8px;
+    color: #EDE6D6; text-decoration: none; font-size: 0.93rem; font-weight: 500;
+    transition: background .15s ease, color .15s ease;
+  }
+  .nav-list a:hover{ background: rgba(255,255,255,0.08); color: #fff; }
+
+  .nav-toggle{
+    display: none; background: none; border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px; width: 42px; height: 38px; cursor: pointer;
+    color: #F5EFE2; align-items: center; justify-content: center;
+  }
+  .nav-toggle svg{ width: 20px; height: 20px; }
+
+  @media (max-width: 860px){
+    .nav-toggle{ display: flex; }
+    .nav-list{
+      position: absolute; top: 72px; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--brown); padding: 8px 16px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      max-height: 0; overflow: hidden; transition: max-height .25s ease;
+    }
+    .nav-list.open{ max-height: 420px; }
+    .nav-list a{ padding: 13px 10px; border-radius: 6px; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative; overflow: hidden;
+    background: var(--brown);
+    color: #F5EFE2;
+    padding: 96px 0 84px;
+  }
+  .hero-contours{
+    position: absolute; inset: 0; opacity: 0.5; pointer-events: none;
+  }
+  .hero-dotgrid{
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(245,239,226,0.12) 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, transparent, black 35%, black 70%, transparent);
+  }
+  .hero-inner{ position: relative; z-index: 2; }
+  .eyebrow{
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 22px;
+  }
+  .eyebrow .dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .hero h1{
+    color: #FBF7EC;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.04; font-weight: 600; max-width: 14ch;
+  }
+  .hero h1 em{ font-style: italic; color: var(--gold); font-weight: 500; }
+
+  .hero-sub{
+    margin-top: 24px; max-width: 46ch; font-size: 1.1rem; color: #E2D7C2;
+  }
+
+  .hero-cta{ display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+  .btn{
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-primary{ background: var(--terracotta); color: #fff; }
+  .btn-primary:hover{ background: var(--terracotta-dark); }
+  .btn-ghost{ background: transparent; color: #F5EFE2; border-color: rgba(245,239,226,0.35); }
+  .btn-ghost:hover{ background: rgba(245,239,226,0.08); }
+
+  .hero-meta{
+    margin-top: 56px; display: flex; gap: 28px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 0.82rem; color: #C9BC9F;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 84px 0; }
+  .section-soft{ background: var(--bg-soft); }
+  .section-head{ max-width: 640px; margin-bottom: 48px; }
+  .section-label{
+    font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--green-dark); margin-bottom: 12px; display: block;
+  }
+  .section-head h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .section-head p{ margin-top: 14px; color: var(--ink-soft); font-size: 1.04rem; }
+
+  /* ---------- Potensi cards ---------- */
+  .potensi-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  @media (max-width: 920px){ .potensi-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px){ .potensi-grid{ grid-template-columns: 1fr; } }
+
+  .potensi-card{
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px 22px; transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .potensi-card:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(61,42,29,0.08); }
+  .potensi-icon{
+    width: 44px; height: 44px; border-radius: 10px; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center;
+    background: #F0EADA; color: var(--green-dark);
+  }
+  .potensi-icon svg{ width: 24px; height: 24px; }
+  .potensi-card h3{ font-size: 1.08rem; margin-bottom: 6px; }
+  .potensi-card .num{
+    font-family: var(--font-mono); font-weight: 600; color: var(--terracotta);
+    font-size: 0.95rem; margin-bottom: 10px; display: block;
+  }
+  .potensi-card p{ color: var(--ink-soft); font-size: 0.93rem; }
+
+  .livestock-note{
+    margin-top: 22px; padding: 18px 22px; border-radius: var(--radius);
+    background: #F0EADA; border: 1px dashed var(--border); color: var(--ink-soft); font-size: 0.95rem;
+  }
+  .livestock-note strong{ color: var(--brown); }
+
+  /* ---------- Stats ---------- */
+  .stats-grid{
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+    border-top: 1px solid var(--border); border-left: 1px solid var(--border);
+  }
+  @media (max-width: 920px){ .stats-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px){ .stats-grid{ grid-template-columns: 1fr; } }
+  .stat-cell{
+    padding: 32px 24px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .stat-cell .num{
+    font-family: var(--font-mono); font-weight: 600; color: var(--brown);
+    font-size: clamp(1.8rem, 3vw, 2.4rem); display: block; line-height: 1;
+  }
+  .stat-cell .label{ margin-top: 10px; color: var(--ink-soft); font-size: 0.9rem; }
+  .stats-foot{ margin-top: 18px; font-size: 0.82rem; color: var(--ink-soft); font-family: var(--font-mono); }
+
+  /* ---------- Pemerintahan ---------- */
+  .gov-layout{ display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 800px){ .gov-layout{ grid-template-columns: 1fr; } }
+
+  .gov-card{
+    background: var(--brown); color: #F5EFE2; border-radius: var(--radius);
+    padding: 30px 26px;
+  }
+  .gov-card .avatar{
+    width: 64px; height: 64px; border-radius: 50%; background: var(--gold);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+    color: var(--brown); font-family: var(--font-display); font-weight: 700; font-size: 1.4rem;
+  }
+  .gov-card h3{ color: #FBF7EC; font-size: 1.2rem; margin-bottom: 4px; }
+  .gov-card .role{ font-family: var(--font-mono); font-size: 0.82rem; color: var(--gold); }
+  .gov-card .period{ margin-top: 14px; font-size: 0.88rem; color: #D9CDB8; }
+
+  .gov-list{
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 8px 0;
+  }
+  .gov-list li{
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 16px 24px; border-bottom: 1px solid var(--border); font-size: 0.95rem;
+  }
+  .gov-list li:last-child{ border-bottom: none; }
+  .gov-list .role{ color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.82rem; }
+
+  /* ---------- Berita ---------- */
+  .news-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 860px){ .news-grid{ grid-template-columns: 1fr; } }
+  .news-card{
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--card);
+  }
+  .news-thumb{
+    height: 140px; background: linear-gradient(135deg, var(--green), var(--green-dark));
+    position: relative; display: flex; align-items: flex-end; padding: 14px;
+  }
+  .news-thumb span{
+    font-family: var(--font-mono); font-size: 0.72rem; color: #EAF1DE; background: rgba(0,0,0,0.25);
+    padding: 4px 9px; border-radius: 999px;
+  }
+  .news-body{ padding: 20px 22px 24px; }
+  .news-date{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--terracotta); }
+  .news-card h3{ font-size: 1.05rem; margin-top: 8px; line-height: 1.4; }
+  .news-card p{ margin-top: 8px; color: var(--ink-soft); font-size: 0.9rem; }
+  .news-disclaimer{
+    margin-top: 20px; font-size: 0.85rem; color: var(--ink-soft); font-style: italic;
+  }
+
+  /* ---------- Layanan & Kontak ---------- */
+  .layanan-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 48px; }
+  @media (max-width: 860px){ .layanan-grid{ grid-template-columns: 1fr; } }
+  .layanan-card{
+    border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 22px; background: var(--card);
+  }
+  .layanan-card .potensi-icon{ background: #FBE9DC; color: var(--terracotta-dark); }
+  .layanan-card h3{ font-size: 1.05rem; margin: 14px 0 6px; }
+  .layanan-card p{ color: var(--ink-soft); font-size: 0.92rem; }
+
+  .contact-panel{
+    background: var(--brown); color: #F5EFE2; border-radius: var(--radius);
+    padding: 40px 36px; display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center;
+  }
+  @media (max-width: 700px){ .contact-panel{ grid-template-columns: 1fr; text-align: left; } }
+  .contact-panel h3{ color: #FBF7EC; font-size: 1.4rem; }
+  .contact-panel address{ font-style: normal; margin-top: 10px; color: #D9CDB8; font-size: 0.95rem; line-height: 1.7; }
+  .btn-wa{ background: var(--green); color: #fff; }
+  .btn-wa:hover{ background: var(--green-dark); }
+
+  /* ---------- Footer ---------- */
+  footer{ background: #271A11; color: #C9BC9F; padding: 56px 0 30px; }
+  .footer-top{
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; flex-wrap: wrap;
+    padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-nav{ display: flex; gap: 22px; flex-wrap: wrap; }
+  .footer-nav a{ text-decoration: none; color: #C9BC9F; font-size: 0.9rem; }
+  .footer-nav a:hover{ color: #fff; }
+  .footer-bottom{
+    margin-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    font-size: 0.8rem; color: #8A7C66;
+  }
+
+  .reveal{ opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<a href="#konten" class="skip-link">Lompat ke konten utama</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#beranda" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3D2A1D" stroke-width="2" stroke-linecap="round"><path d="M12 21V10M12 10C12 6 9 3 5 3C5 7 8 10 12 10ZM12 10C12 6 15 3 19 3C19 7 16 10 12 10Z"/></svg>
+      </span>
+      <span>Desa Sita<small>Kec. Rana Mese · Manggarai Timur</small></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navList" aria-label="Buka menu navigasi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-list" id="navList">
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#profil">Profil Desa</a></li>
+      <li><a href="#pemerintahan">Pemerintahan</a></li>
+      <li><a href="#angka">Desa dalam Angka</a></li>
+      <li><a href="#berita">Berita</a></li>
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="konten">
+
+  <!-- HERO -->
+  <section class="hero" id="beranda" style="padding-top:96px;">
+    <svg class="hero-contours" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 380 C 150 320, 300 360, 420 300 C 540 240, 620 290, 760 230 C 900 170, 1000 210, 1200 150" fill="none" stroke="#D9A441" stroke-width="1.5" opacity="0.35"/>
+      <path d="M0 420 C 160 360, 320 400, 440 340 C 560 280, 640 330, 780 270 C 920 210, 1020 250, 1200 190" fill="none" stroke="#5B7A41" stroke-width="1.5" opacity="0.3"/>
+      <path d="M0 460 C 170 400, 330 440, 460 380 C 590 320, 660 370, 800 310 C 940 250, 1040 290, 1200 230" fill="none" stroke="#C1602A" stroke-width="1.5" opacity="0.25"/>
+    </svg>
+    <div class="hero-dotgrid" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <span class="eyebrow"><span class="dot"></span>Situs Resmi Pemerintah Desa</span>
+      <h1>Desa Sita, dari <em>tanah</em> kopi dan kakao Manggarai</h1>
+      <p class="hero-sub">Desa agraris di kaki pegunungan Rana Mese — hidup dari hasil kebun dan sawah sejak tahun 1966, dijaga oleh empat dusun dan ribuan tangan yang menanam setiap musim.</p>
+      <div class="hero-cta">
+        <a href="#profil" class="btn btn-primary">Kenali Desa Kami</a>
+        <a href="#kontak" class="btn btn-ghost">Hubungi Kantor Desa</a>
+      </div>
+      <div class="hero-meta">
+        <span>3.192 jiwa</span>
+        <span>4 dusun</span>
+        <span>1.400 ha wilayah</span>
+        <span>Kab. Manggarai Timur, NTT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFIL & POTENSI -->
+  <section id="profil">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Profil Desa</span>
+        <h2>Sekilas desa &amp; potensi unggulan</h2>
+        <p>Desa Sita terbentuk pada tahun 1966, hasil pemekaran dari wilayah Desa Gaya lama. Namanya diambil dari pohon kayu Sita yang tumbuh di kampung asal desa ini. Sebagian besar warga menggantungkan hidup dari hasil bumi: kopi, kakao, cengkeh, padi, dan jagung.</p>
+      </div>
+
+      <div class="potensi-grid reveal">
+        <article class="potensi-card">
+          <div class="potensi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h13a3 3 0 0 1 0 6H6a3 3 0 0 1-3-6Z"/><path d="M16 12h2a2 2 0 1 1 0 4h-1"/><path d="M6 6c0 2 1.5 3 1.5 4M11 6c0 2 1.5 3 1.5 4"/></svg>
+          </div>
+          <h3>Kopi</h3>
+          <span class="num">55,5 ha lahan rakyat</span>
+          <p>Komoditas perkebunan rakyat tertua dan paling dikenal dari Desa Sita.</p>
+        </article>
+        <article class="potensi-card">
+          <div class="potensi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><path d="M12 6V3M9 4l1 2M15 4l-1 2"/></svg>
+          </div>
+          <h3>Kakao</h3>
+          <span class="num">88,5 ha lahan rakyat</span>
+          <p>Lahan perkebunan terluas di desa, jadi tulang punggung ekonomi warga.</p>
+        </article>
+        <article class="potensi-card">
+          <div class="potensi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9M12 9c0-3 2-5 5-5 0 3-2 5-5 5ZM12 9C12 6 10 4 7 4c0 3 2 5 5 5Z"/><path d="M5 21h14"/></svg>
+          </div>
+          <h3>Padi sawah</h3>
+          <span class="num">178 ha sawah irigasi</span>
+          <p>Penopang utama ketahanan pangan warga Desa Sita setiap musim tanam.</p>
+        </article>
+        <article class="potensi-card">
+          <div class="potensi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="14" rx="3"/><path d="M9 21h6M12 17v4"/></svg>
+          </div>
+          <h3>Jagung</h3>
+          <span class="num">12,5 ha tanam musiman</span>
+          <p>Tanaman pangan musiman yang melengkapi siklus tanam warga.</p>
+        </article>
+      </div>
+
+      <p class="livestock-note reveal">
+        <strong>Selain bertani,</strong> sebagian warga juga beternak — tercatat sekitar 295 ekor sapi, 393 ekor babi, dan ribuan ekor ayam kampung tersebar di seluruh dusun.
+      </p>
+    </div>
+  </section>
+
+  <!-- DESA DALAM ANGKA -->
+  <section class="section-soft" id="angka">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Data Desa</span>
+        <h2>Desa dalam angka</h2>
+        <p>Gambaran singkat kondisi kependudukan dan wilayah Desa Sita.</p>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-cell"><span class="num">3.192</span><span class="label">Jiwa penduduk</span></div>
+        <div class="stat-cell"><span class="num">859</span><span class="label">Kepala keluarga</span></div>
+        <div class="stat-cell"><span class="num">4</span><span class="label">Dusun</span></div>
+        <div class="stat-cell"><span class="num">1.400 ha</span><span class="label">Luas wilayah</span></div>
+        <div class="stat-cell"><span class="num">1.271</span><span class="label">Warga petani/pekebun</span></div>
+      </div>
+      <p class="stats-foot">Sumber: Profil Desa Sita · data diperbarui berkala oleh perangkat desa.</p>
+    </div>
+  </section>
+
+  <!-- PEMERINTAHAN -->
+  <section id="pemerintahan">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Pemerintahan</span>
+        <h2>Pemerintahan &amp; kelembagaan</h2>
+        <p>Sejak terbentuk tahun 1966, Desa Sita telah dipimpin oleh delapan kepala pemerintahan. Saat ini desa dijabat oleh Penjabat Antar Waktu (PAW) sejak tahun 2021.</p>
+      </div>
+
+      <div class="gov-layout reveal">
+        <div class="gov-card">
+          <div class="avatar" aria-hidden="true">SR</div>
+          <h3>Stephanus Blasius Rugu</h3>
+          <span class="role">Penjabat Antar Waktu (PAW)</span>
+          <p class="period">Menjabat sejak 2021 — sekarang</p>
+        </div>
+
+        <ul class="gov-list">
+          <li><span>Sekretaris Desa</span><span class="role">S-1</span></li>
+          <li><span>Kepala Urusan Pemerintahan</span><span class="role">S-1</span></li>
+          <li><span>Kepala Urusan Pembangunan</span><span class="role">S-1</span></li>
+          <li><span>Kepala Urusan Keuangan</span><span class="role">S-1</span></li>
+          <li><span>Kepala Seksi Kesejahteraan</span><span class="role">S-1</span></li>
+          <li><span>Badan Permusyawaratan Desa (BPD)</span><span class="role">9 anggota — Ketua: Stefanus Deos</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BERITA -->
+  <section class="section-soft" id="berita">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Kabar Desa</span>
+        <h2>Berita &amp; kegiatan</h2>
+        <p>Informasi kegiatan, pengumuman, dan program pembangunan terbaru dari pemerintah desa.</p>
+      </div>
+
+      <div class="news-grid reveal">
+        <article class="news-card">
+          <div class="news-thumb"><span>Pertanian</span></div>
+          <div class="news-body">
+            <span class="news-date">Contoh tanggal</span>
+            <h3>Musim panen kopi dimulai di empat dusun</h3>
+            <p>Ringkasan singkat kegiatan atau pengumuman terkait panen tahun ini.</p>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="news-thumb"><span>Pemerintahan</span></div>
+          <div class="news-body">
+            <span class="news-date">Contoh tanggal</span>
+            <h3>Musyawarah desa membahas rencana pembangunan</h3>
+            <p>Ringkasan singkat hasil atau agenda musyawarah desa.</p>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="news-thumb"><span>Kesehatan</span></div>
+          <div class="news-body">
+            <span class="news-date">Contoh tanggal</span>
+            <h3>Jadwal Posyandu bulan ini di setiap dusun</h3>
+            <p>Ringkasan singkat jadwal layanan kesehatan untuk warga.</p>
+          </div>
+        </article>
+      </div>
+      <p class="news-disclaimer">Catatan: kartu di atas adalah contoh tampilan untuk demo — isi dengan berita aktual saat situs digunakan, dan perbarui secara berkala.</p>
+    </div>
+  </section>
+
+  <!-- LAYANAN & KONTAK -->
+  <section id="layanan">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Layanan</span>
+        <h2>Butuh bantuan atau layanan administrasi?</h2>
+        <p>Hubungi langsung kantor Desa Sita atau ajukan layanan administrasi secara online.</p>
+      </div>
+
+      <div class="layanan-grid reveal">
+        <div class="layanan-card">
+          <div class="potensi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5a1 1 0 0 0 1 1h5"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h4"/></svg>
+          </div>
+          <h3>Surat online</h3>
+          <p>Ajukan surat keterangan tanpa perlu datang langsung ke kantor desa.</p>
+        </div>
+        <div class="layanan-card">
+          <div class="potensi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2Z"/></svg>
+          </div>
+          <h3>Pengaduan warga</h3>
+          <p>Sampaikan masukan, laporan, atau aspirasi kepada pemerintah desa.</p>
+        </div>
+        <div class="layanan-card">
+          <div class="potensi-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </div>
+          <h3>Lokasi kantor desa</h3>
+          <p>Kunjungi langsung kantor Desa Sita pada jam kerja yang tersedia.</p>
+        </div>
+      </div>
+
+      <div class="contact-panel reveal" id="kontak">
+        <div>
+          <h3>Kantor Desa Sita</h3>
+          <address>
+            Kecamatan Rana Mese, Kabupaten Manggarai Timur, Nusa Tenggara Timur<br>
+            Jam kerja: Senin–Jumat, 08.00–15.00 WITA
+          </address>
+        </div>
+        <a href="https://wa.me/62" class="btn btn-wa">Hubungi via WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="brand" style="color:#F5EFE2;">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3D2A1D" stroke-width="2" stroke-linecap="round"><path d="M12 21V10M12 10C12 6 9 3 5 3C5 7 8 10 12 10ZM12 10C12 6 15 3 19 3C19 7 16 10 12 10Z"/></svg>
+        </span>
+        <span>Pemerintah Desa Sita<small>Rana Mese · Manggarai Timur · NTT</small></span>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#profil">Profil Desa</a></li>
+        <li><a href="#pemerintahan">Pemerintahan</a></li>
+        <li><a href="#angka">Desa dalam Angka</a></li>
+        <li><a href="#berita">Berita</a></li>
+        <li><a href="#layanan">Layanan</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Pemerintah Desa Sita. Seluruh data bersumber dari Profil Desa Sita.</span>
+      <span>Halaman demo — konten contoh untuk keperluan presentasi.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky header shadow on scroll
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // Mobile nav toggle
+  var navToggle = document.getElementById('navToggle');
+  var navList = document.getElementById('navList');
+  navToggle.addEventListener('click', function(){
+    var isOpen = navList.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navList.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navList.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>
